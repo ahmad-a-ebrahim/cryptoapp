@@ -1,5 +1,7 @@
 # Cryptoverse (cryptoapp)
 
+> **Note:** This project is kept here as a legacy project and is no longer actively maintained.
+
 A React single-page app for browsing live cryptocurrency stats, coin details with price history charts, and the latest crypto news.
 
 ## Project Status
