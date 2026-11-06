@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+# Cryptoverse (cryptoapp)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React single-page app for browsing live cryptocurrency stats, coin details with price history charts, and the latest crypto news.
 
-## Available Scripts
+**Live demo:** https://ahmad-ebrahim-1.github.io/cryptoapp
 
-In the project directory, you can run:
+## Project Status
 
-### `npm start`
+| Area | Status |
+| --- | --- |
+| Homepage (global stats + top coins + news preview) | Implemented |
+| Cryptocurrencies list (search) | Implemented |
+| Coin details (stats, line chart, time period selector) | Implemented |
+| News feed | Implemented |
+| Navigation / routing | Implemented, recently fixed |
+| Automated tests | Not written yet |
+| Secrets management | Needs work (see Known Issues) |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+_Last updated: 2026-11-06_
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+- **React 18** (Create React App / `react-scripts` 5)
+- **Redux Toolkit + RTK Query** for state and API data fetching
+- **React Router v6** for routing
+- **Ant Design 5** and `@ant-design/icons` for UI
+- **Chart.js 4** with `react-chartjs-2` for price charts
+- `millify` and `moment` for number and date formatting
+- `gh-pages` for deployment to GitHub Pages
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Routes
 
-### `npm run build`
+| Path | Component | Description |
+| --- | --- | --- |
+| `/cryptoapp` | `Homepage` | Global stats and top coins |
+| `/cryptocurrencies` | `Cryptocurrencies` | Full coin list |
+| `/crypto/:coinId` | `CryptoDetails` | Coin stats and history chart |
+| `/news` | `News` | Crypto news articles |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Project Structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+src/
+├── App.js                  # Layout and routes
+├── index.js                # Entry point
+├── app/store.js            # Redux store
+├── components/             # Navbar, Homepage, Cryptocurrencies,
+│                           # CryptoDetails, LineChart, News, Loader
+├── services/
+│   ├── cryptoApi.js        # Coinranking (RapidAPI) endpoints
+│   └── cryptoNewsApi.js    # Bing News Search (RapidAPI) endpoints
+└── images/
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+Prerequisites: Node.js and npm.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+npm install
+npm start        # dev server at http://localhost:3000
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Scripts
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+| Command | Description |
+| --- | --- |
+| `npm start` | Run the app in development mode |
+| `npm run build` | Create a production build in `build/` |
+| `npm test` | Run tests in watch mode |
+| `npm run deploy` | Build and publish to GitHub Pages |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Data Sources
 
-## Learn More
+Both APIs are accessed through [RapidAPI](https://rapidapi.com):
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Coinranking: coins, coin details, coin price history
+- Bing News Search: crypto news
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Known Issues / TODO
 
-### Code Splitting
+- The RapidAPI key is hardcoded in `src/services/cryptoApi.js` and `src/services/cryptoNewsApi.js`. Move it to an environment variable (e.g. `REACT_APP_RAPID_API_KEY`) and rotate the exposed key. Note that any key shipped in a client-side bundle is still visible to users.
+- No automated tests yet.
+- The homepage route is `/cryptoapp` (matching the GitHub Pages path), so the app has no `/` route.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Maintaining this README
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Update the status table, routes and TODO list whenever a commit changes features, routes, dependencies or setup steps.
