@@ -2,8 +2,6 @@
 
 A React single-page app for browsing live cryptocurrency stats, coin details with price history charts, and the latest crypto news.
 
-**Live demo:** https://ahmad-ebrahim-1.github.io/cryptoapp
-
 ## Project Status
 
 | Area | Status |
